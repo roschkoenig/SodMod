@@ -1,0 +1,16 @@
+setup.py
+sodmod/__init__.py
+sodmod/calc.py
+sodmod/cells.py
+sodmod/chans.py
+sodmod/input.py
+sodmod/params.py
+sodmod.egg-info/PKG-INFO
+sodmod.egg-info/SOURCES.txt
+sodmod.egg-info/dependency_links.txt
+sodmod.egg-info/not-zip-safe
+sodmod.egg-info/top_level.txt
+sodmod.egg-info/.ipynb_checkpoints/SOURCES-checkpoint.txt
+sodmod.egg-info/.ipynb_checkpoints/dependency_links-checkpoint.txt
+sodmod.egg-info/.ipynb_checkpoints/not-zip-safe-checkpoint
+sodmod.egg-info/.ipynb_checkpoints/top_level-checkpoint.txt
