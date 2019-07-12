@@ -3,7 +3,7 @@ sodmod/__init__.py
 sodmod/calc.py
 sodmod/cells.py
 sodmod/chans.py
-sodmod/input.py
+sodmod/incurr.py
 sodmod/params.py
 sodmod.egg-info/PKG-INFO
 sodmod.egg-info/SOURCES.txt
