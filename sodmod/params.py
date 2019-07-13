@@ -1,6 +1,7 @@
 from scipy.optimize import curve_fit
 from .chans import Na_gate 
 import numpy as np
+from matplotlib import pyplot as plt
 
 def params(cond = 'WT37'):
     
@@ -223,11 +224,19 @@ def exvals(p, cond = 'WT37'):
     return p
 
 
-def plot(p):
-    
+def plot_gating(conds = ['WT37', 'AS37', 'TI37']):
     def F_m(V,V2_m,s_m):return 1 / (1 + np.exp(-(np.divide(V-V2_m,s_m))))
     def F_h(V,V2_h,s_h):return 1 / (1 + np.exp((np.divide(V-V2_h,s_h))))
-    
-    for V in range(-80,.1,20):
-        vm.append(F_m(V, p['V2_m'], p['s_m']))
+
+    fig, ax = plt.subplots(1,1, figsize=(12, 8))
+    V = np.array(range(-80,20,1))
+
+    cols  = ['k','b','r']
+
+    for ci in range(len(conds)):
+        p = params(conds[ci])
+        ax.plot(V, F_m(V, p['V2_m'], p['s_m']), cols[ci])
+        ax.plot(V, F_h(V, p['V2_h'], p['s_h']), cols[ci])
+
+
     
