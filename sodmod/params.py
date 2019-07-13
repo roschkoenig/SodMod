@@ -3,7 +3,7 @@ from .chans import Na_gate
 import numpy as np
 from matplotlib import pyplot as plt
 
-def params(cond = 'WT37'):
+def params(cond = 'WT37', I_scale = 1):
     
     p = {}
     
@@ -63,6 +63,7 @@ def params(cond = 'WT37'):
     p['b_Ca']  = 0.03          # ms-1
     p['a_CAN'] = 20            # ms-1 mM-2
     p['b_CAN'] = 0.002         # ms-1
+    p['I_sc']  = I_scale
     
     # Fit Boltzman description of Na steady state parameters
     #-------------------------------------------------------------------------------
