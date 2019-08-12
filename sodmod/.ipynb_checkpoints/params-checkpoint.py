@@ -3,68 +3,162 @@ from .chans import Na_gate
 import numpy as np
 from matplotlib import pyplot as plt
 
-def params(cond = 'WT37', I_scale = 1):
+#         # input resistance 2000 MOhms, surface area 1000 um2
+#         # Taken from Destexhe A, [...] Steriade M (1994) J Neurophys 
+#         # Indices of states - XX
+#         #-------------------------------------------------------------------------------
+#         snames = [None]*10;
+#         snames[0] = 'Vm'           # Membrane voltage
+#         snames[1] = 'Ca_i'         # Intracellular calcium
+#         snames[2] = 'ECa'          # Calcium reversal potential
+#         snames[3] = 'm_K'          # Potassium gate
+#         snames[4] = 'm_Na'         # sodium activation (?) gate
+#         snames[5] = 'h_Na'         # sodium fast inactivation (?) gate
+#         snames[6] = 'm_CAN'        # nonspecific cation activation gate
+#         snames[7] = 'm_KCa'        # calcium dependent potassium activation gate
+#         snames[8] = 'm_Th'         # 
+#         snames[9] = 'h_Th'         # 
+#         p['snames_XX'] = snames
+
+#         p['gCa']  = 1.75            # calcium conductance (mS/cm^2)
+#         p['gKCa'] = 10              # calcium dependent potassium conductance (mS/cm^2)
+#         p['gCAN'] = 0.25            # Ca dependent nonspecific cation conductance
+#         
+
+# p['ECAN'] = -20             # Ca dependent nonspecific cation rev pot (mV)
+
+ # Intracellular calcium dynamics parameters
+#         #-------------------------------------------------------------------------------
+#         p['Ca_o'] = 2               # Extracellular calcium (mM)
+#         p['T']    = 309.15          # Temperature (K)
+
+#         # Other special parameters
+#         #-------------------------------------------------------------------------------
+#         p['a_Ca']  = 48            # ms-1 mM-2
+#         p['b_Ca']  = 0.03          # ms-1
+#         p['a_CAN'] = 20            # ms-1 mM-2
+#         p['b_CAN'] = 0.002         # ms-1
+
+
+def params(cond = 'WT37', I_scale = 1, typ = 'IN'):
     
     p = {}
     
-    # input resistance 2000 MOhms, surface area 1000 um2
-    # Indices of states - XX
+    # Fixed values
     #-------------------------------------------------------------------------------
-    snames = [None]*10;
-    snames[0] = 'Vm'           # Membrane voltage
-    snames[1] = 'Ca_i'         # Intracellular calcium
-    snames[2] = 'ECa'          # Calcium reversal potential
-    snames[3] = 'm_K'          # Potassium gate
-    snames[4] = 'm_Na'         # sodium activation (?) gate
-    snames[5] = 'h_Na'         # sodium fast inactivation (?) gate
-    snames[6] = 'm_CAN'        # nonspecific cation activation gate
-    snames[7] = 'm_KCa'        # calcium dependent potassium activation gate
-    snames[8] = 'm_Th'         # 
-    snames[9] = 'h_Th'         # 
-    p['snames_XX'] = snames
-
-    # Indices of states - IN
-    #-------------------------------------------------------------------------------
-    snames = [None]*4;
-    snames[0] = 'Vm'           # Membrane voltage
-    snames[1] = 'm_K'          # Potassium gate
-    snames[2] = 'm_Na'         # sodium activation (?) gate
-    snames[3] = 'h_Na'         # sodium fast inactivation (?) gate
-    p['snames_IN'] = snames
-
-    # Conductances and membrane capacitance
-    #-------------------------------------------------------------------------------
-    p['gK']   = 5.0             # potassium conductance (mS/cm^2)
-    p['gNa']  = 50.0            # sodium conductance (mS/cm^2)
-    p['gL']   = 0.0000205       # leak conductance (mS/cm^2) 
-    p['gCa']  = 1.75            # calcium conductance (mS/cm^2)
-    p['gKCa'] = 10              # calcium dependent potassium conductance (mS/cm^2)
-    p['gCAN'] = 0.25            # Ca dependent nonspecific cation conductance
-
     p['Cm']   = 1               # membrance capacitance (uF/cm^2)
-
-
-    # Reversal potentials 
-    #-------------------------------------------------------------------------------
     p['EK']   = -90.0           # Potassium potential (mV)
     p['ENa']  = 55.0            # Sodium potential (mV)
-    p['El']   = -70.3           # Leak potential (mV)
-    p['ECAN'] = -20             # Ca dependent nonspecific cation rev pot (mV)
-    p['V_t']  = -63             # Firing threshold 
-
-    # Intracellular calcium dynamics parameters
+    p['Vt']  = -63             # Firing threshold 
+    p['I_sc'] = I_scale         # Input scaling - This should really be changed
+      
+    # Type-specific parameters
     #-------------------------------------------------------------------------------
-    p['Ca_o'] = 2               # Extracellular calcium (mM)
-    p['T']    = 309.15          # Temperature (K)
+    if typ == 'IN':
 
-    # Other special parameters
+        # Indices of states - IN
+        #-------------------------------------------------------------------------------
+        snames = [None]*5;
+        snames[0] = 'Vm'           # Membrane voltage
+        snames[1] = 'm_K'          # Potassium gate
+        snames[2] = 'm_Na'         # sodium activation gate
+        snames[3] = 'h_Na'         # sodium fast inactivation gate
+        snames[4] = 'm_NaP'        # Persistent sodium current gate
+        p['snames'] = snames
+
+        # Conductances and membrane capacitance
+        #-------------------------------------------------------------------------------   
+        p['A']    = 0.00014         # surface area (29,000um^2 in cm^2)
+        p['gK']   = 10              # potassium conductance (mS/cm^2)
+        p['gNa']  = 50.0            # sodium conductance (mS/cm^2)
+        p['gL']   = 0.1             # leak conductance (mS/cm^2) 
+            
+        # Reversal potentials 
+        #-------------------------------------------------------------------------------
+        p['El']   = -70.0           # Leak potential (mV)
+        
+    # Type-specific parameters
     #-------------------------------------------------------------------------------
-    p['a_Ca']  = 48            # ms-1 mM-2
-    p['b_Ca']  = 0.03          # ms-1
-    p['a_CAN'] = 20            # ms-1 mM-2
-    p['b_CAN'] = 0.002         # ms-1
-    p['I_sc']  = I_scale
-    
+    if typ == 'PY':
+
+        # Indices of states - PY
+        #-------------------------------------------------------------------------------
+        snames = [None]*6;
+        snames[0] = 'Vm'           # Membrane voltage
+        snames[1] = 'm_K'          # Potassium gate
+        snames[2] = 'm_Na'         # sodium activation gate
+        snames[3] = 'h_Na'         # sodium fast inactivation gate
+        snames[4] = 'm_NaP'        # Persistent sodium current gate
+        snames[5] = 'm_KM'         # M-type potassium activation gate 
+        p['snames'] = snames
+
+        # Conductances and membrane capacitance
+        #-------------------------------------------------------------------------------   
+        p['A']    = 0.00029         # surface area (29,000um^2 in cm^2)
+        p['gK']   = 10.0            # potassium conductance (mS/cm^2)
+        p['gNa']  = 50.0            # sodium conductance (mS/cm^2)
+        p['gM']   = 0.07            # M type potassium conductance (mS/cm^2)
+        p['gL']   = 0.1             # leak conductance (mS/cm^2) 
+            
+        # Reversal potentials 
+        #-------------------------------------------------------------------------------
+        p['El']   = -70.0           # Leak potential (mV)
+        
+        # Special parameters
+        #-------------------------------------------------------------------------------
+        p['tM']   = 4               # M-type gating max tau (s)
+        
+    if typ == 'RE':
+        
+        # Indices of states - RE
+        #-------------------------------------------------------------------------------
+        snames = [None]*11;
+        snames[0] = 'Vm'           # Membrane voltage
+        snames[1] = 'm_K'          # Potassium gate
+        snames[2] = 'm_Na'         # sodium activation gate
+        snames[3] = 'h_Na'         # sodium fast inactivation gate
+        snames[4] = 'm_NaP'        # Persistent sodium current gate
+        snames[5] = 'm_KM'         # M-type potassium activation gate 
+        snames[6] = 'm_CAN'        # Calcium dependent nonspecific cation current
+        snames[7] = 'm_KCa'        # Calcium dependent K current
+        snames[8] = 'm_Th'         # Low threshold Ca current activation
+        snames[9] = 'h_Th'         # Low threshold Ca current inactivation
+        snames[10] = 'Ca_i'        # Intracellular calcium concentration
+        p['snames'] = snames
+        
+        # Conductances 
+        #-------------------------------------------------------------------------------   
+        p['A']    = 0.00029         # surface area (29,000um^2 in cm^2)
+        p['gK']   = 10.0            # potassium conductance (mS/cm^2)
+        p['gNa']  = 50.0            # sodium conductance (mS/cm^2)
+        p['gM']   = 0.07            # M type potassium conductance (mS/cm^2)
+        p['gL']   = 0.1             # leak conductance (mS/cm^2) 
+        p['gCa']  = 1.75            # calcium conductance (mS/cm^2)
+        p['gKCa'] = 10              # calcium dependent potassium conductance (mS/cm^2)
+        p['gCAN'] = 0.25            # Ca dependent nonspecific cation conductance
+        p['ECAN'] = -20             # Ca dependent nonspecific cation rev pot (mV)
+        
+        # Reversal potentials 
+        #-------------------------------------------------------------------------------
+        p['El']   = -70.0           # Leak potential (mV)
+        
+        # Special parameters
+        #-------------------------------------------------------------------------------
+        p['tM']   = 4               # M-type gating max tau (s)
+        
+        # Intracellular calcium dynamics parameters
+        #-------------------------------------------------------------------------------
+        p['Ca_o'] = 2               # Extracellular calcium (mM)
+        p['T']    = 309.15          # Temperature (K)
+
+        # Other special parameters
+        #-------------------------------------------------------------------------------
+        p['a_Ca']  = 48            # ms-1 mM-2
+        p['b_Ca']  = 0.03          # ms-1
+        p['a_CAN'] = 20            # ms-1 mM-2
+        p['b_CAN'] = 0.002         # ms-1
+
+        
     # Fit Boltzman description of Na steady state parameters
     #-------------------------------------------------------------------------------
     V2_m, s_m, V2_h, s_h = gatefit(p)
@@ -72,7 +166,7 @@ def params(cond = 'WT37', I_scale = 1):
     p['s_m']  = s_m
     p['V2_h'] = V2_h
     p['s_h']  = s_h
-    
+
     return exvals(p, cond)
 
 
