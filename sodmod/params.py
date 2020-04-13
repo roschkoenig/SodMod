@@ -40,6 +40,13 @@ from matplotlib import pyplot as plt
 #         p['b_CAN'] = 0.002         # ms-1
 
 
+def initialise(p, A=np.zeros(1)):
+  y0 = []
+  for k in p['snames']: y0.append(0)
+  y0[p['snames'].index('rGABA')] = np.zeros(A['GABA'].shape[0])
+  return y0
+
+
 def params(cond = 'WT37', I_scale = 1, typ = 'IN', paradigm = 'step'):
 
     p = {}
