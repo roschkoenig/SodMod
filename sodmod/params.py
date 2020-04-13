@@ -74,6 +74,7 @@ def params(cond = 'WT37', I_scale = 1, typ = 'IN', paradigm = 'step'):
         snames[2] = 'm_Na'         # sodium activation gate
         snames[3] = 'h_Na'         # sodium fast inactivation gate
         snames[4] = 'm_NaP'        # Persistent sodium current gate
+        snames[5] = 'rGABA'       # proportion of open GABA
         p['snames'] = snames
 
         # Conductances and membrane capacitance
@@ -100,6 +101,7 @@ def params(cond = 'WT37', I_scale = 1, typ = 'IN', paradigm = 'step'):
         snames[3] = 'h_Na'         # sodium fast inactivation gate
         snames[4] = 'm_NaP'        # Persistent sodium current gate
         snames[5] = 'm_KM'         # M-type potassium activation gate
+        snames[6] = 'rGABA'       # proportion of open GABA
         p['snames'] = snames
 
         # Conductances and membrane capacitance
@@ -134,7 +136,7 @@ def params(cond = 'WT37', I_scale = 1, typ = 'IN', paradigm = 'step'):
         snames[8] = 'm_Th'         # Low threshold Ca current activation
         snames[9] = 'h_Th'         # Low threshold Ca current inactivation
         snames[10] = 'Ca_i'        # Intracellular calcium concentration
-        snames[11] = 'rGABA'       # proportion of open GABA receptors
+        snames[11] = 'rGABA'       # proportion of open GABA receptor
         p['snames'] = snames
 
         # Conductances
