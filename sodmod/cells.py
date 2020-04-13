@@ -6,11 +6,12 @@
 
 from . import chans as ch
 from . import calc as ca
+from . import synapse as sy
 from .incurr import Id
 import numpy as np
 
 
-def IN(y,t,p):
+def IN(y,t,p,s=None):
 
     dy  = np.zeros((np.shape(p['snames'])[0],))
     sn  = p['snames']
@@ -23,7 +24,11 @@ def IN(y,t,p):
     k   = ch.K(Vm, p, y[sn.index('m_K')])
     na  = ch.Na(Vm,p, y[sn.index('m_Na')], y[sn.index('h_Na')])
     nap = ch.NaP(Vm,p,y[sn.index('m_NaP')])
+
     Int = l + k[0] + na[0] + nap[0]
+
+    # Evaluate synaptic potentials
+    #---------------------------------------------------------------------------
 
     # Calculate membrane potential
     #---------------------------------------------------------------------------
@@ -38,7 +43,7 @@ def IN(y,t,p):
 
     return dy
 
-def PY(y,t,p):
+def PY(y,t,p,s=None):
 
     dy  = np.zeros((np.shape(p['snames'])[0],))
     sn  = p['snames']
@@ -53,6 +58,10 @@ def PY(y,t,p):
     km  = ch.M(Vm,p,y[sn.index('m_KM')])
 
     Int = l + k[0] + na[0] + nap[0] + km[0]
+
+    # Evaluate synaptic potentials
+    #---------------------------------------------------------------------------
+    gaba_sum = sy.GABA(Vm, p, r, s)
 
     # Calculate membrane potential
     #---------------------------------------------------------------------------

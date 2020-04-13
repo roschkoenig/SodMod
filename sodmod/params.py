@@ -52,6 +52,16 @@ def params(cond = 'WT37', I_scale = 1, typ = 'IN', paradigm = 'step'):
     p['Vt']  = -63             # Firing threshold
     p['I_sc'] = I_scale         # Input scaling - This should really be changed
 
+    # Synaptic parameters (GABA-A transmitter)
+    #-------------------------------------------------------------------------------
+    p['Egaba'] = -80           # GABA reversal potential (Desthexe et al 1994)
+    p['aGABA'] = 0.53          # ms^(-1) mM^(-1)
+    p['bGABA'] = 0.184         # ms^(-1)
+    p['gGABA'] = 1             # µS
+    p['GABAamp'] = 1           # mM
+    p['GABAdur'] = 1           # ms
+
+
     # Type-specific parameters
     #-------------------------------------------------------------------------------
     if typ == 'IN':
