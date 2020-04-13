@@ -134,6 +134,7 @@ def params(cond = 'WT37', I_scale = 1, typ = 'IN', paradigm = 'step'):
         snames[8] = 'm_Th'         # Low threshold Ca current activation
         snames[9] = 'h_Th'         # Low threshold Ca current inactivation
         snames[10] = 'Ca_i'        # Intracellular calcium concentration
+        snames[11] = 'rGABA'       # proportion of open GABA receptors
         p['snames'] = snames
 
         # Conductances
