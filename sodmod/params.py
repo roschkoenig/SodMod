@@ -68,7 +68,7 @@ def params(cond = 'WT37', I_scale = 1, typ = 'IN', paradigm = 'step'):
 
         # Indices of states - IN
         #-------------------------------------------------------------------------------
-        snames = [None]*5;
+        snames = [None]*6;
         snames[0] = 'Vm'           # Membrane voltage
         snames[1] = 'm_K'          # Potassium gate
         snames[2] = 'm_Na'         # sodium activation gate
@@ -94,7 +94,7 @@ def params(cond = 'WT37', I_scale = 1, typ = 'IN', paradigm = 'step'):
 
         # Indices of states - PY
         #-------------------------------------------------------------------------------
-        snames = [None]*6;
+        snames = [None]*7;
         snames[0] = 'Vm'           # Membrane voltage
         snames[1] = 'm_K'          # Potassium gate
         snames[2] = 'm_Na'         # sodium activation gate
@@ -124,7 +124,7 @@ def params(cond = 'WT37', I_scale = 1, typ = 'IN', paradigm = 'step'):
 
         # Indices of states - RE
         #-------------------------------------------------------------------------------
-        snames = [None]*11;
+        snames = [None]*12;
         snames[0] = 'Vm'           # Membrane voltage
         snames[1] = 'm_K'          # Potassium gate
         snames[2] = 'm_Na'         # sodium activation gate
