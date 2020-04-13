@@ -40,11 +40,10 @@ from matplotlib import pyplot as plt
 #         p['b_CAN'] = 0.002         # ms-1
 
 
-def initialise(p, A=np.zeros(1)):
-  y0 = []
-  for k in p['snames']: y0.append(0)
-  y0[p['snames'].index('rGABA')] = np.zeros(A['GABA'].shape[0])
-  return y0
+def initialise(p, V0=-80, style='zeros'):
+    if style == 'random': y0 = np.random.rand(len(p['snames']))
+    if style == 'zeros': y0 = np.zeros(len(p['snames']))
+    return y0
 
 
 def params(cond = 'WT37', I_scale = 1, typ = 'IN', paradigm = 'step'):
@@ -75,13 +74,12 @@ def params(cond = 'WT37', I_scale = 1, typ = 'IN', paradigm = 'step'):
 
         # Indices of states - IN
         #-------------------------------------------------------------------------------
-        snames = [None]*6;
+        snames = [None]*5;
         snames[0] = 'Vm'           # Membrane voltage
         snames[1] = 'm_K'          # Potassium gate
         snames[2] = 'm_Na'         # sodium activation gate
         snames[3] = 'h_Na'         # sodium fast inactivation gate
         snames[4] = 'm_NaP'        # Persistent sodium current gate
-        snames[5] = 'rGABA'       # proportion of open GABA
         p['snames'] = snames
 
         # Conductances and membrane capacitance
@@ -101,14 +99,13 @@ def params(cond = 'WT37', I_scale = 1, typ = 'IN', paradigm = 'step'):
 
         # Indices of states - PY
         #-------------------------------------------------------------------------------
-        snames = [None]*7;
+        snames = [None]*6;
         snames[0] = 'Vm'           # Membrane voltage
         snames[1] = 'm_K'          # Potassium gate
         snames[2] = 'm_Na'         # sodium activation gate
         snames[3] = 'h_Na'         # sodium fast inactivation gate
         snames[4] = 'm_NaP'        # Persistent sodium current gate
         snames[5] = 'm_KM'         # M-type potassium activation gate
-        snames[6] = 'rGABA'       # proportion of open GABA
         p['snames'] = snames
 
         # Conductances and membrane capacitance
@@ -131,7 +128,7 @@ def params(cond = 'WT37', I_scale = 1, typ = 'IN', paradigm = 'step'):
 
         # Indices of states - RE
         #-------------------------------------------------------------------------------
-        snames = [None]*12;
+        snames = [None]*11;
         snames[0] = 'Vm'           # Membrane voltage
         snames[1] = 'm_K'          # Potassium gate
         snames[2] = 'm_Na'         # sodium activation gate
@@ -143,7 +140,6 @@ def params(cond = 'WT37', I_scale = 1, typ = 'IN', paradigm = 'step'):
         snames[8] = 'm_Th'         # Low threshold Ca current activation
         snames[9] = 'h_Th'         # Low threshold Ca current inactivation
         snames[10] = 'Ca_i'        # Intracellular calcium concentration
-        snames[11] = 'rGABA'       # proportion of open GABA receptor
         p['snames'] = snames
 
         # Conductances
