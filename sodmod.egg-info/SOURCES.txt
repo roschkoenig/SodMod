@@ -5,7 +5,9 @@ sodmod/calc.py
 sodmod/cells.py
 sodmod/chans.py
 sodmod/incurr.py
+sodmod/net.py
 sodmod/params.py
+sodmod/synapse.py
 sodmod.egg-info/PKG-INFO
 sodmod.egg-info/SOURCES.txt
 sodmod.egg-info/dependency_links.txt
