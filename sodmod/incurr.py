@@ -9,7 +9,7 @@ def I_ramp(t):
     if 0.0 < t < 20.0:  return 0
     if 20.0 < t < 980.0:
         tctl = (t-20.0)/960.0
-        return (np.exp(tctl)-1) / (np.exp(1)-1))        
+        return (np.exp(tctl)-1) / (np.exp(1)-1)        
     return 0.0
 
 def Id(t, paradigm):
