@@ -334,7 +334,7 @@ def exvals(p, cond = 'WT37'):
     p['V2_h'] = p['V2_h'] + dV2_h
     p['s_m']  = s_m
     p['s_h']  = s_h
-    p['rNaP'] = rNaP * 0
+    p['rNaP'] = rNaP * 0.1
 
     return p
 
