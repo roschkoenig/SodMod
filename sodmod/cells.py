@@ -76,7 +76,7 @@ def PY(y,t,p,s=None):
     dy[sn.index('h_Na')]  = na[2]
     dy[sn.index('m_NaP')] = nap[1]
     dy[sn.index('m_KM')]  = km[1]
-    dy[sn.index('rGABA')] = gaba[1]
+    # dy[sn.index('rGABA')] = gaba[1]
 
     return dy
 
