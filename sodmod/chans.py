@@ -30,7 +30,7 @@ def Na(Vm,p,m,h):
 
     # Calculate time varying states
     #---------------------------------------------------------------------------
-    i_na  = (1-p['INaP']) * p['gNa'] * np.power(m, 3.0) * h * (Vm - p['ENa'])
+    i_na  = (1-p['rNaP']) * p['gNa'] * np.power(m, 3.0) * h * (Vm - p['ENa'])
     dm    = (m_inf - m) / t_m;
     dh    = (h_inf - h) / t_h;
 
@@ -47,7 +47,7 @@ def NaP(Vm,p,m):
 
     # Calculate time varying states
     #---------------------------------------------------------------------------
-    i_nap = p['INaP'] * m * (Vm - p['ENa'])
+    i_nap = p['rNaP'] * p['gNa'] * m * (Vm - p['ENa'])
     dm    = (m_inf - m) / t_m
 
     return(i_nap, dm)
