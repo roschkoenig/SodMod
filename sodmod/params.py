@@ -46,18 +46,19 @@ def initialise(p, V0=-80, style='zeros'):
     return y0
 
 
-def params(cond = 'WT37', I_scale = 1, typ = 'IN', paradigm = 'step', I_off = 0):
+def params(cond = 'WT37', I_scale = 1, typ = 'IN', paradigm = 'step', I_off = 0, NaP_scl = 0.1):
 
     p = {}
 
     # Fixed values
     #-------------------------------------------------------------------------------
-    p['Cm']   = 1               # membrance capacitance (uF/cm^2)
-    p['EK']   = -90.0           # Potassium potential (mV)
-    p['ENa']  = 55.0            # Sodium potential (mV)
-    p['Vt']  = -63             # Firing threshold
-    p['I_sc'] = I_scale         # Input scaling - This should really be changed
-    p['I_off'] = I_off            # negative offsetting of input current
+    p['Cm']    = 1               # membrance capacitance (uF/cm^2)
+    p['EK']    = -90.0           # Potassium potential (mV)
+    p['ENa']   = 55.0            # Sodium potential (mV)
+    p['Vt']    = -63             # Firing threshold
+    p['I_sc']  = I_scale         # Input scaling - This should really be changed
+    p['I_off'] = I_off           # negative offsetting of input current
+    p['NaP_scl'] = NaP_scl       # scaling up and down effects of persistent sodium
 
     # Synaptic parameters (GABA-A transmitter)
     #-------------------------------------------------------------------------------
@@ -334,7 +335,7 @@ def exvals(p, cond = 'WT37'):
     p['V2_h'] = p['V2_h'] + dV2_h
     p['s_m']  = s_m
     p['s_h']  = s_h
-    p['rNaP'] = rNaP * 0.1
+    p['rNaP'] = rNaP * p['NaP_scl']
 
     return p
 
