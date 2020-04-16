@@ -47,7 +47,7 @@ def NaP(Vm,p,m):
 
     # Calculate time varying states
     #---------------------------------------------------------------------------
-    i_nap = p['rNaP'] * p['gNa'] * m * (Vm - p['ENa'])  /2
+    i_nap = p['rNaP'] * p['gNa'] * m * (Vm - p['ENa'])
     dm    = (m_inf - m) / t_m
 
     return(i_nap, dm)
