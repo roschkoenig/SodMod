@@ -43,11 +43,11 @@ def NaP(Vm,p,m):
     # Steady state gating behaviour
     #--------------------------------------------------------------------------
     m_inf = 1 / (1 + np.exp(-(Vm-p['V2_m']) / p['s_m']));
-    t_m   = 1/(alpha_m + beta_m);
+    t_m   = 10/(alpha_m + beta_m);
 
     # Calculate time varying states
     #---------------------------------------------------------------------------
-    i_nap = p['rNaP'] * p['gNa'] * m * (Vm - p['ENa'])
+    i_nap = p['rNaP'] * p['gNa'] * m * (Vm - p['ENa'])  /2
     dm    = (m_inf - m) / t_m
 
     return(i_nap, dm)
