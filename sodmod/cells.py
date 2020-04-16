@@ -32,7 +32,7 @@ def IN(y,t,p,s=None):
 
     # Calculate membrane potential
     #---------------------------------------------------------------------------
-    dy[sn.index('Vm')] = (Id(t,p['paradigm'])*p['I_sc'] - Int) / p['Cm']
+    dy[sn.index('Vm')] = (Id(t,p['paradigm'])*p['I_sc']-p['I_off'] - Int) / p['Cm']
 
     # Voltage sensitive gating
     #---------------------------------------------------------------------------

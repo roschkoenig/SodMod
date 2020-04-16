@@ -57,6 +57,7 @@ def params(cond = 'WT37', I_scale = 1, typ = 'IN', paradigm = 'step'):
     p['ENa']  = 55.0            # Sodium potential (mV)
     p['Vt']  = -63             # Firing threshold
     p['I_sc'] = I_scale         # Input scaling - This should really be changed
+    p['I_off'] = 1.0            # negative offsetting of input current
 
     # Synaptic parameters (GABA-A transmitter)
     #-------------------------------------------------------------------------------
