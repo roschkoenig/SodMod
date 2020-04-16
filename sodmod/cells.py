@@ -61,13 +61,13 @@ def PY(y,t,p,s=None):
 
     # Evaluate synaptic potentials
     #---------------------------------------------------------------------------
-    gaba = sy.GABA(Vm, p, y[sn.index('rGABA')], s)
+    # gaba = sy.GABA(Vm, p, y[sn.index('rGABA')], s)
 
-    Syn = np.sum(gaba[0])
+    # Syn = np.sum(gaba[0])
 
     # Calculate membrane potential
     #---------------------------------------------------------------------------
-    dy[sn.index('Vm')] = (Id(t, p['paradigm'])*p['I_sc'] - Int - Syn) / p['Cm']
+    dy[sn.index('Vm')] = (Id(t, p['paradigm'])*p['I_sc'] - Int) / p['Cm']
 
     # Voltage sensitive gating
     #---------------------------------------------------------------------------
