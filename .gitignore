@@ -1,3 +1,5 @@
 *.ipynb
 example_notebooks
 example_notebooks/*
+*.pkl
+simulation_results/*
