@@ -8,10 +8,10 @@ def I_step(t):
 def I_constant(t):  return 1.0
 
 def I_ramp(t):
-    steepness = 20
+    steepness = 5
     if 0.0 < t < 20.0:  return 0
-    if 20.0 < t < 980.0:
-        tctl = steepness*(t-20.0)/960.0
+    if 20.0 < t < 1000.0:
+        tctl = steepness*(t-20.0)/980.0
         return (np.exp(tctl)-1) / (np.exp(steepness)-1)
     return 0.0
 

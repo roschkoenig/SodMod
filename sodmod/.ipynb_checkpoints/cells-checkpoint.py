@@ -134,22 +134,22 @@ def RE(y,t,p):
 #===============================================================================
 # Simulation executor
 #===============================================================================
-def runsim(i_scl, conds, ctyp, specs, Y0 = None, paradigm='constant',
-           I_off=0, NaP_scl = 1):
+def runsim(i_scl, NaP_scl, specs, Y0 = None):
     
-    cell = globals()[ctyp]
+    # This code will simulate a single cell of the specified subtype with sheets
+    
+    cell = globals()[specs.ctyp]
     Vy    = {}
 
     # Run simulation across conditions
     #-------------------------------------------------------------------------------  
-    for ci in range(len(conds)):
-        par   = pr.params(conds[ci], i_scl, ctyp, paradigm, I_off = I_off, 
-                          NaP_scl = NaP_scl)
-        if Y0 == None:  
-            y0    = np.random.rand(len(par['snames']))
-            y0[0] = specs['V0']
-        else:           y0 = Y0[conds[ci]][-1,:]
+    for ci in range(len(specs.conds)):
+        par   = pr.params(specs.conds[ci], i_scl, specs.ctyp, 
+                          specs.paradigm, NaP_scl = NaP_scl)
+        if Y0 == None:
+            Y0 = specs.Y0 if hasattr(specs, 'Y0') else specs.initialise().Y0 
         
-        Vy.update({conds[ci]:odeint(cell, y0, specs['T'], args=(par,))})
+        y0 = specs.Y0[specs.conds[ci]][-1,:]
+        Vy.update({specs.conds[ci]:odeint(cell, y0, specs.T, args=(par,))})
 
     return Vy
