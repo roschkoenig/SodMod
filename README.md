@@ -303,17 +303,17 @@ The following jupyter comman run in the command line will generate a markdown fi
 
 
 ```python
-! cp Single
-# !jupyter nbconvert --to markdown Single_Cell_Simulation.ipynb
+! cp Single_Cell_Simulation.ipynb ../README.ipynb
+!jupyter nbconvert --to markdown ../README.ipynb
 ```
 
-    [NbConvertApp] Converting notebook Single_Cell_Simulation.ipynb to markdown
-    [NbConvertApp] Support files will be in Single_Cell_Simulation_files/
-    [NbConvertApp] Making directory Single_Cell_Simulation_files
-    [NbConvertApp] Making directory Single_Cell_Simulation_files
-    [NbConvertApp] Making directory Single_Cell_Simulation_files
-    [NbConvertApp] Making directory Single_Cell_Simulation_files
-    [NbConvertApp] Writing 12618 bytes to Single_Cell_Simulation.md
+    [NbConvertApp] Converting notebook ../README.ipynb to markdown
+    [NbConvertApp] Support files will be in README_files/
+    [NbConvertApp] Making directory ../README_files
+    [NbConvertApp] Making directory ../README_files
+    [NbConvertApp] Making directory ../README_files
+    [NbConvertApp] Making directory ../README_files
+    [NbConvertApp] Writing 12855 bytes to ../README.md
 
 
 
