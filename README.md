@@ -1,7 +1,7 @@
 
 ## Simulation for biallelic dynamics of SCN1A
 
-This code implements empirical recordings of mutant sodium channel gating behaviour in a Hodgkin Huxley model of cortical neuronal firing. A live version of this notebook can be opened in the [google colab](https://bit.ly/SodMod-Notebook) interactive coding environment. This means you can trial some of the analysis without installing additional code. 
+This code implements empirical recordings of mutant sodium channel gating behaviour in a Hodgkin Huxley model of cortical neuronal firing. A live version of this notebook can be opened in the [google colab](https://colab.research.google.com/github/roschkoenig/SodMod/blob/master/example_noteboks/Single_Cell_Simulation.ipynb) interactive coding environment. This means you can trial some of the analysis without installing additional code. 
 
 
 ```python
@@ -12,9 +12,10 @@ This code implements empirical recordings of mutant sodium channel gating behavi
 
 # This needs to be run only once at the beginning to access the models
 #-------------------------------------------------------------------------------
-# !pip3 install --upgrade git+https://github.com/roschkoenig/SodMod.git@Single_Cell_Playground
-import sys
-!{sys.executable} -m pip install -e '/Volumes/GoogleDrive/My Drive/Research/1906 SCN1A Biallelic Dynamics/02 - Scripts/sodmod'
+!pip install --upgrade git+https://github.com/roschkoenig/SodMod.git@Single_Cell_Playground
+    
+# import sys
+# !{sys.executable} -m pip install -e '/Volumes/GoogleDrive/My Drive/Research/1906 SCN1A Biallelic Dynamics/02 - Scripts/sodmod'
 
 ```
 
@@ -313,7 +314,7 @@ The following jupyter comman run in the command line will generate a markdown fi
     [NbConvertApp] Making directory ../README_files
     [NbConvertApp] Making directory ../README_files
     [NbConvertApp] Making directory ../README_files
-    [NbConvertApp] Writing 12855 bytes to ../README.md
+    [NbConvertApp] Writing 12784 bytes to ../README.md
 
 
 
