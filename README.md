@@ -12,22 +12,12 @@ This code implements empirical recordings of mutant sodium channel gating behavi
 
 # This needs to be run only once at the beginning to access the models
 #-------------------------------------------------------------------------------
-!pip install --upgrade git+https://github.com/roschkoenig/SodMod.git@Single_Cell_Playground
+!pip install --upgrade git+https://github.com/roschkoenig/SodMod.git
     
 # import sys
 # !{sys.executable} -m pip install -e '/Volumes/GoogleDrive/My Drive/Research/1906 SCN1A Biallelic Dynamics/02 - Scripts/sodmod'
 
 ```
-
-    Obtaining file:///Volumes/GoogleDrive/My%20Drive/Research/1906%20SCN1A%20Biallelic%20Dynamics/02%20-%20Scripts/sodmod
-    Installing collected packages: sodmod
-      Attempting uninstall: sodmod
-        Found existing installation: sodmod 0.1
-        Uninstalling sodmod-0.1:
-          Successfully uninstalled sodmod-0.1
-      Running setup.py develop for sodmod
-    Successfully installed sodmod
-
 
 
 ```python
@@ -314,7 +304,7 @@ The following jupyter comman run in the command line will generate a markdown fi
     [NbConvertApp] Making directory ../README_files
     [NbConvertApp] Making directory ../README_files
     [NbConvertApp] Making directory ../README_files
-    [NbConvertApp] Writing 12784 bytes to ../README.md
+    [NbConvertApp] Writing 12877 bytes to ../README.md
 
 
 
