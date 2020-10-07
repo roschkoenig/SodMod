@@ -311,6 +311,26 @@ def exvals(p, cond = 'WT37'):
              'Frec' : 1.47,
              'rNaP' : 0.0659 }
             )
+    
+    e.append({'name' : 'TI-AS-32',
+             'temp' : 32 + 273,
+             'V2_m' : -24.74,
+             's_m'  : 3.9,
+             'V2_h' : -59.3,
+             's_h'  : -4.1,
+             'Frec' : 5.0,
+             'rNaP' : 0.0560 }
+            )
+
+    e.append({'name' : 'TI-AS-37',
+             'temp' : 37 + 273,
+             'V2_m' : -20.21,
+             's_m'  : 4.21,
+             'V2_h' : -51.8,
+             's_h'  : -4.1,
+             'Frec' : 1.28,
+             'rNaP' : 0.0713 }
+            )
 
     # Normalise to wildtype at 37 degrees and calculate differences
     #--------------------------------------------------------------------------

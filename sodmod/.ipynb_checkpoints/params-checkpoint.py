@@ -46,17 +46,19 @@ def initialise(p, V0=-80, style='zeros'):
     return y0
 
 
-def params(cond = 'WT37', I_scale = 1, typ = 'IN', paradigm = 'step'):
+def params(cond = 'WT37', I_scale = 1, typ = 'IN', paradigm = 'step', I_off = 0, NaP_scl = 0.1):
 
     p = {}
 
     # Fixed values
     #-------------------------------------------------------------------------------
-    p['Cm']   = 1               # membrance capacitance (uF/cm^2)
-    p['EK']   = -90.0           # Potassium potential (mV)
-    p['ENa']  = 55.0            # Sodium potential (mV)
-    p['Vt']  = -63             # Firing threshold
-    p['I_sc'] = I_scale         # Input scaling - This should really be changed
+    p['Cm']    = 1               # membrance capacitance (uF/cm^2)
+    p['EK']    = -90.0           # Potassium potential (mV)
+    p['ENa']   = 55.0            # Sodium potential (mV)
+    p['Vt']    = -63             # Firing threshold
+    p['I_sc']  = I_scale         # Input scaling - This should really be changed
+    p['I_off'] = I_off           # negative offsetting of input current
+    p['NaP_scl'] = NaP_scl       # scaling up and down effects of persistent sodium
 
     # Synaptic parameters (GABA-A transmitter)
     #-------------------------------------------------------------------------------
@@ -257,7 +259,7 @@ def exvals(p, cond = 'WT37'):
              'V2_h' : -48.1,
              's_h'  : -4.4,
              'Frec' : 2.16,
-             'INaP' : 0.0164 }
+             'rNaP' : 0.0164 }
             )
 
     e.append({'name' : 'WT37',
@@ -267,7 +269,7 @@ def exvals(p, cond = 'WT37'):
              'V2_h' : -50.2,
              's_h'  : -4.4,
              'Frec' : 1.28,
-             'INaP' : 0.0191 }
+             'rNaP' : 0.0191 }
             )
 
     e.append({'name' : 'AS32',
@@ -277,7 +279,7 @@ def exvals(p, cond = 'WT37'):
              'V2_h' : -50.7,
              's_h'  : -4.2,
              'Frec' : 2.05,
-             'INaP' : 0.0184 }
+             'rNaP' : 0.0184 }
             )
 
     e.append({'name' : 'AS37',
@@ -287,7 +289,7 @@ def exvals(p, cond = 'WT37'):
              'V2_h' : -43.5,
              's_h'  : -4.5,
              'Frec' : 1.06,
-             'INaP' : 0.0194 }
+             'rNaP' : 0.0194 }
             )
 
     e.append({'name' : 'TI32',
@@ -297,7 +299,7 @@ def exvals(p, cond = 'WT37'):
              'V2_h' : -50.3,
              's_h'  : -3.9,
              'Frec' : 2.89,
-             'INaP' : 0.0466 }
+             'rNaP' : 0.0466 }
             )
 
     e.append({'name' : 'TI37',
@@ -307,7 +309,27 @@ def exvals(p, cond = 'WT37'):
              'V2_h' : -50.8,
              's_h'  : -4.0,
              'Frec' : 1.47,
-             'INaP' : 0.0659 }
+             'rNaP' : 0.0659 }
+            )
+    
+    e.append({'name' : 'TI-AS-32',
+             'temp' : 32 + 273,
+             'V2_m' : -24.74,
+             's_m'  : 3.9,
+             'V2_h' : -59.3,
+             's_h'  : -4.1,
+             'Frec' : 5.0,
+             'rNaP' : 0.0560 }
+            )
+
+    e.append({'name' : 'TI-AS-37',
+             'temp' : 37 + 273,
+             'V2_m' : -20.21,
+             's_m'  : 4.21,
+             'V2_h' : -51.8,
+             's_h'  : -4.1,
+             'Frec' : 1.28,
+             'rNaP' : 0.0713 }
             )
 
     # Normalise to wildtype at 37 degrees and calculate differences
@@ -325,7 +347,7 @@ def exvals(p, cond = 'WT37'):
     h_z   = curr['s_h']/norm['s_h'] * h_z       # adjustment by s_m ratios
     s_h   = (0.0863 * curr['temp'] / h_z)       # readjust by actual temp
 
-    INaP  = norm['INaP']
+    rNaP  = curr['rNaP']
 
     # Pack into parameter dictionariy
     #--------------------------------------------------------------------------
@@ -333,7 +355,7 @@ def exvals(p, cond = 'WT37'):
     p['V2_h'] = p['V2_h'] + dV2_h
     p['s_m']  = s_m
     p['s_h']  = s_h
-    p['INaP'] = INaP
+    p['rNaP'] = rNaP * p['NaP_scl']
 
     return p
 
