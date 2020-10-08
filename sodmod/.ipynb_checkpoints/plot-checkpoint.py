@@ -18,7 +18,7 @@ def sweep(Vy, I_scl, Na_scl, specs, figscale = 1):
     #---------------------------------------------------------------------------
     fig     = plt.figure(constrained_layout = True, figsize=(6*figscale,1.5*len(conds)*figscale))
     fig.patch.set_facecolor('white')
-    gs      = fig.add_gridspec(3,3)
+    gs      = fig.add_gridspec(len(conds),3)
     testpar = pr.params(typ = ctyp)
     Osc     = np.zeros((len(conds),len(Vy),len(Vy[0])))
     ni      = 0
