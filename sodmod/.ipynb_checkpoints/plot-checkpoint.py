@@ -112,7 +112,7 @@ def bifurcation(Vy_fwd, Vy_bwd, I_fwd, I_bwd, specs, figscale = 1, Nplots = None
                                                    facecolor='none')
             ax[plotid].set_ylabel('membrane potential')
         
-        ax[len(specs.conds)+1].scatter(np.log(I_fwd), frequencies, color=specs.cols[ci])
+        ax[len(specs.conds)].scatter(np.log(I_fwd), frequencies, color=specs.cols[ci])
         
         plotid = plotid + 1
 
